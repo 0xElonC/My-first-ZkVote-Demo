@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ShieldCheckIcon, LockClosedIcon, CheckCircleIcon, CpuChipIcon } from '@heroicons/react/24/outline'
+import { ShieldCheckIcon, LockClosedIcon, CheckCircleIcon, CpuChipIcon, AcademicCapIcon, BeakerIcon, CircleStackIcon, KeyIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 
@@ -32,91 +32,53 @@ export default function ZKIntroPage() {
       ]
     },
     {
-      icon: LockClosedIcon,
-      title: 'ZKP 的三个性质',
-      titleEn: 'Three Properties of ZKP',
-      description: '一个有效的零知识证明系统必须满足三个关键性质：',
-      descriptionEn: 'A valid zero-knowledge proof system must satisfy three key properties:',
-      properties: [
-        {
-          name: '完整性 (Completeness)',
-          nameEn: 'Completeness',
-          desc: '如果陈述是真的，诚实的证明者总能说服诚实的验证者',
-          descEn: 'If the statement is true, an honest prover can always convince an honest verifier'
-        },
-        {
-          name: '可靠性 (Soundness)',
-          nameEn: 'Soundness',
-          desc: '如果陈述是假的，作弊的证明者只有很小的概率能欺骗验证者',
-          descEn: 'If the statement is false, a cheating prover can only convince the verifier with negligible probability'
-        },
-        {
-          name: '零知识性 (Zero-Knowledge)',
-          nameEn: 'Zero-Knowledge',
-          desc: '验证者除了知道陈述是真的之外，学不到任何其他信息',
-          descEn: 'The verifier learns nothing other than the fact that the statement is true'
-        }
-      ]
+      icon: AcademicCapIcon,
+      title: '密码学基础：椭圆曲线与配对',
+      titleEn: 'Cryptographic Foundations: Elliptic Curves & Pairings',
+      description: 'ZK-SNARK 基于椭圆曲线密码学和双线性配对函数，这些数学工具是零知识证明安全性的基石。',
+      descriptionEn: 'ZK-SNARK is based on elliptic curve cryptography and bilinear pairing functions, which are the foundation of zero-knowledge proof security.',
     },
     {
-      icon: CheckCircleIcon,
-      title: 'ZK-SNARK 技术',
-      titleEn: 'ZK-SNARK Technology',
-      description: 'ZK-SNARK（Zero-Knowledge Succinct Non-Interactive Argument of Knowledge）是最流行的零知识证明实现之一。',
-      descriptionEn: 'ZK-SNARK (Zero-Knowledge Succinct Non-Interactive Argument of Knowledge) is one of the most popular zero-knowledge proof implementations.',
-      features: [
-        {
-          title: 'Succinct（简洁）',
-          titleEn: 'Succinct',
-          desc: '证明大小很小，验证速度快',
-          descEn: 'Proof size is small and verification is fast'
-        },
-        {
-          title: 'Non-Interactive（非交互）',
-          titleEn: 'Non-Interactive',
-          desc: '证明者和验证者不需要来回通信',
-          descEn: 'No back-and-forth communication needed between prover and verifier'
-        },
-        {
-          title: 'Argument of Knowledge',
-          titleEn: 'Argument of Knowledge',
-          desc: '证明者必须真正"知道"秘密信息',
-          descEn: 'Prover must actually "know" the secret information'
-        }
-      ]
+      icon: BeakerIcon,
+      title: 'R1CS 约束系统',
+      titleEn: 'R1CS Constraint System',
+      description: 'Rank-1 Constraint System (R1CS) 是将计算转换为代数约束的标准方法，是电路设计的核心。',
+      descriptionEn: 'Rank-1 Constraint System (R1CS) is the standard method for converting computations into algebraic constraints, core to circuit design.',
+    },
+    {
+      icon: CircleStackIcon,
+      title: 'QAP 与多项式转换',
+      titleEn: 'QAP & Polynomial Transformation',
+      description: 'Quadratic Arithmetic Program (QAP) 将 R1CS 约束转换为多项式形式，使得可以使用多项式承诺方案。',
+      descriptionEn: 'Quadratic Arithmetic Program (QAP) transforms R1CS constraints into polynomial form, enabling polynomial commitment schemes.',
+    },
+    {
+      icon: KeyIcon,
+      title: 'Trusted Setup 可信设置',
+      titleEn: 'Trusted Setup',
+      description: '可信设置是 Groth16 的关键步骤，涉及生成公共参考串（CRS）和有毒废料（Toxic Waste）的处理。',
+      descriptionEn: 'Trusted setup is a critical step in Groth16, involving generation of Common Reference String (CRS) and handling of Toxic Waste.',
+    },
+    {
+      icon: LockClosedIcon,
+      title: 'Witness 与电路执行',
+      titleEn: 'Witness & Circuit Execution',
+      description: 'Witness 是满足电路约束的具体变量赋值，是连接私密输入和公开输出的桥梁。',
+      descriptionEn: 'Witness is the specific variable assignment satisfying circuit constraints, bridging private inputs and public outputs.',
     },
     {
       icon: CpuChipIcon,
-      title: 'Groth16 算法',
-      titleEn: 'Groth16 Algorithm',
-      description: 'Groth16 是最高效的 ZK-SNARK 算法之一，广泛应用于区块链领域。',
-      descriptionEn: 'Groth16 is one of the most efficient ZK-SNARK algorithms, widely used in blockchain.',
-      workflow: [
-        {
-          step: '1. 电路设计',
-          stepEn: '1. Circuit Design',
-          desc: '将计算逻辑转换为算术电路（R1CS约束系统）',
-          descEn: 'Convert computation logic to arithmetic circuit (R1CS constraint system)'
-        },
-        {
-          step: '2. 可信设置',
-          stepEn: '2. Trusted Setup',
-          desc: '生成证明密钥（Proving Key）和验证密钥（Verification Key）',
-          descEn: 'Generate Proving Key and Verification Key'
-        },
-        {
-          step: '3. 生成证明',
-          stepEn: '3. Generate Proof',
-          desc: '使用私密输入和证明密钥生成零知识证明',
-          descEn: 'Generate zero-knowledge proof using private input and proving key'
-        },
-        {
-          step: '4. 验证证明',
-          stepEn: '4. Verify Proof',
-          desc: '使用公开输入和验证密钥验证证明的有效性',
-          descEn: 'Verify proof validity using public input and verification key'
-        }
-      ]
+      title: 'Groth16 算法详解',
+      titleEn: 'Groth16 Algorithm Deep Dive',
+      description: 'Groth16 是最高效的 ZK-SNARK 算法，证明大小仅 128 字节（2 个 G1 点 + 1 个 G2 点）。',
+      descriptionEn: 'Groth16 is the most efficient ZK-SNARK algorithm, with proof size only 128 bytes (2 G1 points + 1 G2 point).',
+    },
+    {
+      icon: CheckCircleIcon,
+      title: '投票电路设计实例',
+      titleEn: 'Voting Circuit Design Example',
+      description: '详细分析如何设计一个完整的投票电路，包括约束生成、优化技巧和安全性考虑。',
+      descriptionEn: 'Detailed analysis of designing a complete voting circuit, including constraint generation, optimization techniques, and security considerations.',
     }
   ]
 
